@@ -31,10 +31,7 @@ export default function SentimentList() {
 
       <label>
         Sort by:{" "}
-        <select
-          value={sortBy}
-          onChange={(e) => setSortBy(e.target.value)}
-        >
+        <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
           <option value="overall">Overall</option>
           <option value="maintenance">Maintenance</option>
           <option value="distance">Distance</option>
@@ -45,10 +42,30 @@ export default function SentimentList() {
       {loading && <p>Loading...</p>}
       {error && <p style={{ color: "red" }}>Error: {error}</p>}
 
-      <ul>
+      <ul style={{ listStyleType: "none", padding: 0 }}>
         {locations.map((loc) => (
-          <li key={loc.location}>
-            <strong>{loc.location}</strong> — Overall: {loc.overall_sentiment}, Maintenance: {loc.maintenance_sentiment}, Distance: {loc.distance_sentiment}, Environment: {loc.environment_sentiment}
+          <li
+            key={loc.location}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              marginBottom: "20px",
+              border: "1px solid #ccc",
+              padding: "10px",
+              borderRadius: "8px",
+            }}
+          >
+            <img
+              src={loc.image_url}
+              alt={loc.location}
+              style={{ width: "300px", height: "200px", objectFit: "cover", marginRight: "20px", borderRadius: "6px" }}
+            />
+            <div>
+              <strong>{loc.location}</strong>
+              <p>
+                Overall: {loc.overall_sentiment}, Maintenance: {loc.maintenance_sentiment}, Distance: {loc.distance_sentiment}, Environment: {loc.environment_sentiment}
+              </p>
+            </div>
           </li>
         ))}
       </ul>
