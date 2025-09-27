@@ -1,16 +1,19 @@
 import OptionBar from "./Components/NavBar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import SentimentList from "./Components/Sentiment";
 
 function Home() {
-  return <h2>Home Page</h2>;
+  return (
+    <div>
+      <h2>Home</h2>
+      <SentimentList />
+    </div>
+  );
+
 }
 
-function About() {
-  return <h2>About Page</h2>;
-}
-
-function Contact() {
-  return <h2>Contact Page</h2>;
+function Review() {
+  return <h2>Submit a Review</h2>;
 }
 
 export default function MyApp() {
@@ -19,8 +22,7 @@ export default function MyApp() {
       <OptionBar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/Review" element={<Review />} />
       </Routes>
     </BrowserRouter>
   );

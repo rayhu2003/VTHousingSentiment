@@ -8,8 +8,7 @@ export default function OptionBar() {
     return (
         <nav>
             <button onClick={() => navigate('/')}>Home</button>
-            <button onClick={() => navigate('/about')}>About</button>
-            <button onClick={() => navigate('/contact')}>Contact</button>
+            <button onClick={() => navigate('/Review')}>Submit a Review</button>
         </nav>
     );
 }
