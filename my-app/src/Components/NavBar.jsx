@@ -1,15 +1,15 @@
 import React from 'react';
 import './OptionBar.css';
-import { Link } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 
 export default function OptionBar() {
+    const navigate = useNavigate();
+
     return (
         <nav>
-            <ul>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/about">About</Link></li>
-                <li><Link to="/contact">Contact</Link></li>
-            </ul>
+            <button onClick={() => navigate('/')}>Home</button>
+            <button onClick={() => navigate('/about')}>About</button>
+            <button onClick={() => navigate('/contact')}>Contact</button>
         </nav>
     );
 }

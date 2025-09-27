@@ -22,9 +22,6 @@ export default function MyApp() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
-      <div>
-        <h1>Welcome to My App</h1>
-      </div>
     </BrowserRouter>
   );
 }
