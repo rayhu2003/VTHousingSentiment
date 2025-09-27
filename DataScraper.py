@@ -34,7 +34,7 @@ for sub in subs:
                 "text": post.selftext,
                 "url": post.url
             }
-            db.collection.insert_one(post_doc)  # save post
+            collection.insert_one(post_doc)  # save post
 
             # --- Scrape comments ---
             post.comments.replace_more(limit=0)
@@ -47,4 +47,4 @@ for sub in subs:
                     "text": comment.body,
                     "url": f"https://reddit.com{comment.permalink}"
                 }
-                db.collection.insert_one(comment_doc)
+                collection.insert_one(comment_doc)

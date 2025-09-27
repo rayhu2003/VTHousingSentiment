@@ -3,6 +3,7 @@ from pymongo import MongoClient
 import pymongo
 from pymongo.server_api import ServerApi
 import json
+import re
 
 # MongoDB setup
 uri = "mongodb+srv://user1:1@cluster0.mtu1bhc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
@@ -21,7 +22,7 @@ def analyze_sentiment_gemini_json(text):
     Return a JSON object with sentiment scores from 1 to 10 (below 5 negative, 5 neutral, above 5 positive) for:
 
     - maintenance
-    - distance from Virginia Tech
+    - distance
     - environment
 
     Text:
@@ -38,9 +39,8 @@ def analyze_sentiment_gemini_json(text):
         response = client.models.generate_content(model="gemini-2.5-flash", contents=prompt)
         # The response text should be JSON, so parse it
         response_text = response.candidates[0].content.parts[0].text.strip()
-        with open("test.json", "w", encoding="utf-8") as f:
-            f.write(response_text)
-        sentiment_json = json.loads(response_text)
+        clean_text = re.sub(r'^```json\s*|```$', '', response_text.strip(), flags=re.MULTILINE)
+        sentiment_json = json.loads(clean_text)
         return sentiment_json
     except Exception as e:
         print(f"Error or invalid JSON response: {e}")
@@ -84,4 +84,4 @@ def run_sentiments_and_save():
 
 
 if __name__ == "__main__":
-    get_sentiment_for_keyword("The Edge")
+    run_sentiments_and_save()
