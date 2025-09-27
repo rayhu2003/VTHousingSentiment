@@ -1,18 +1,15 @@
 import React from 'react';
 import './OptionBar.css';
+import { Link } from 'react-router-dom';
 
-const OptionBar = () => {
-    const handleOptionClick = (option) => {
-        alert(`You clicked on ${option}`);
-    }
-
+export default function OptionBar() {
     return (
-        <div style={{ display: 'flex', gap: '10px', padding: '10px 0' }}>
-            <button onClick={() => handleOptionClick('Option 1')}>Option 1</button>
-            <button onClick={() => handleOptionClick('Option 2')}>Option 2</button>
-            <button onClick={() => handleOptionClick('Option 3')}>Option 3</button>
-        </div>
+        <nav>
+            <ul>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/about">About</Link></li>
+                <li><Link to="/contact">Contact</Link></li>
+            </ul>
+        </nav>
     );
-};
-
-export default OptionBar;
+}
