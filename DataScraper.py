@@ -26,6 +26,9 @@ for sub in subs:
     for kw in keywords:
         print(f"\nSearching '{kw}' in r/{sub}...")
         for post in subreddit.search(kw, limit=10):  # limit small for testing
+            if collection.find_one({"type": "post", "id": post.id}):
+                print(f"Post '{post.title}' already in DB, skipping comments and post.")
+                continue  # skip duplicate post and comments
             post_doc = {
                 "type": "post",
                 "subreddit": sub,
