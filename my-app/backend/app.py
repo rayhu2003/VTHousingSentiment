@@ -24,6 +24,20 @@ image_urls = {
     "The Hub": "https://huboncampus.com/blacksburg/wp-content/uploads/2024/06/homepage_Hero-Image-3.jpg",
 }
 
+website_urls = {
+    "Terrace View": "https://terraceviewblacksburg.com",
+    "Smiths Landing": "https://www.smithslandingapartments.com",
+    "The Edge": "https://www.cmgleasing.com/office/the-edge",
+    "Collegiate Suites": "https://collegiatesuitesblacksburg.com",
+    "Fox Ridge": "https://www.foxridgeliving.com",
+    "The Mill": "https://www.blacksburgmill.com",
+    "Sundance Ridge": "https://www.nestrealty.com/new_river_valley/neighborhood-guides/sundance_ridge",
+    "Maple Ridge": "https://mapleridgeblacksburg.com",
+    "Hunters Ridge": "https://collegiatesuitesblacksburg.com",
+    "Pheasant Run": "https://pheasantrunblacksburg.com",
+    "The Hub": "https://huboncampus.com/blacksburg",
+}
+
 # Transform dict into list with overall sentiment added
 data = []
 for location, sentiments in raw_data.items():
@@ -36,7 +50,8 @@ for location, sentiments in raw_data.items():
         "image_url": image_urls.get(location, ""),
         "location": location,
         **sentiments,
-        "overall_sentiment": overall
+        "overall_sentiment": overall,
+        "website_url": website_urls.get(location, "")
     }
     data.append(entry)
 
