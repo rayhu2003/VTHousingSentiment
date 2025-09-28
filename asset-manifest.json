@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/VTHousingSentiment/static/css/main.baaa638c.css",
+    "main.js": "/VTHousingSentiment/static/js/main.e848dc32.js",
+    "static/js/453.96453769.chunk.js": "/VTHousingSentiment/static/js/453.96453769.chunk.js",
+    "index.html": "/VTHousingSentiment/index.html",
+    "main.baaa638c.css.map": "/VTHousingSentiment/static/css/main.baaa638c.css.map",
+    "main.e848dc32.js.map": "/VTHousingSentiment/static/js/main.e848dc32.js.map",
+    "453.96453769.chunk.js.map": "/VTHousingSentiment/static/js/453.96453769.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.baaa638c.css",
+    "static/js/main.e848dc32.js"
+  ]
+}
