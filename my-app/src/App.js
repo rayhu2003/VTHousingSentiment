@@ -27,7 +27,7 @@ function AboutSentiment() {
 
 export default function MyApp() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/VTHousingSentiment">
       <OptionBar />
       <Routes>
         <Route path="/" element={<Home />} />
