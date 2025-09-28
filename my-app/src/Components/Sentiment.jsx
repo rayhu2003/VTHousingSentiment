@@ -52,6 +52,7 @@ export default function SentimentList() {
         {locations.map((loc) => (
           <li
             key={loc.location}
+            className="sentiment-card"
             style={{
               display: "flex",
               alignItems: "center",
@@ -109,7 +110,7 @@ export default function SentimentList() {
                       style={{
                         width: sentimentToWidth(loc.overall_sentiment),
                         height: "20px",
-                        backgroundColor: loc.overall_sentiment > 5 ? "#4CAF50" : "#f44336",
+                        backgroundColor: "#2196F3",
                         borderRadius: "4px",
                       }}
                     ></div>
@@ -122,7 +123,7 @@ export default function SentimentList() {
                       style={{
                         width: sentimentToWidth(loc.maintenance_sentiment),
                         height: "20px",
-                        backgroundColor: loc.maintenance_sentiment > 5 ? "#4CAF50" : "#f44336",
+                        backgroundColor: "#2196F3",
                         borderRadius: "4px",
                       }}
                     ></div>
@@ -135,7 +136,7 @@ export default function SentimentList() {
                       style={{
                         width: sentimentToWidth(loc.distance_sentiment),
                         height: "20px",
-                        backgroundColor: loc.distance_sentiment > 5 ? "#4CAF50" : "#f44336",
+                        backgroundColor: "#2196F3",
                         borderRadius: "4px",
                       }}
                     ></div>
@@ -148,7 +149,7 @@ export default function SentimentList() {
                       style={{
                         width: sentimentToWidth(loc.environment_sentiment),
                         height: "20px",
-                        backgroundColor: loc.environment_sentiment > 5 ? "#4CAF50" : "#f44336",
+                        backgroundColor: "#2196F3",
                         borderRadius: "4px",
                       }}
                     ></div>

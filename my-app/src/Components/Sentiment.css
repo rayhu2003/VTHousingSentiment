@@ -141,3 +141,13 @@ li.fade-leave-active {
   height: 20px;
   border-radius: 4px;
 }
+
+.sentiment-card {
+  background-color: #fafafa;
+  transition: all 0.2s ease-in-out;
+}
+
+.sentiment-card:hover {
+  border: 2px solid #4CAF50; /* Highlighted border */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); /* Optional shadow */
+}
