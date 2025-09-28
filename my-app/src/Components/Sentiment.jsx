@@ -6,12 +6,13 @@ export default function SentimentList() {
   const [sortBy, setSortBy] = useState("overall");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const API_URL = "https://vthousingsentiment.onrender.com";
 
   async function fetchData(sortKey) {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch(`http://127.0.0.1:5000/sort?by=${sortKey}`);
+      const res = await fetch(`${API_URL}/sort?by=${sortKey}`);
       if (!res.ok) throw new Error("Failed to fetch data from API");
       const data = await res.json();
       setLocations(data);
