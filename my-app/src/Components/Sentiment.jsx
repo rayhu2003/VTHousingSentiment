@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import './Sentiment.css';
 
 export default function SentimentList() {
   const [locations, setLocations] = useState([]);
@@ -24,6 +25,11 @@ export default function SentimentList() {
   useEffect(() => {
     fetchData(sortBy);
   }, [sortBy]);
+
+  // A utility function to convert sentiment to width percentage for horizontal bars
+  const sentimentToWidth = (sentiment) => {
+    return `${(sentiment / 10) * 100}%`;  // Assuming sentiment is a number between 1 and 10
+  };
 
   return (
     <div>
@@ -53,10 +59,11 @@ export default function SentimentList() {
               border: "1px solid #000000ff",
               padding: "10px",
               borderRadius: "8px",
+              opacity: 1,
             }}
           >
             <a
-              href={loc.website_url} // Make both the name and image link to the apartment's website
+              href={loc.website_url}
               target="_blank"
               rel="noopener noreferrer"
               style={{
@@ -64,26 +71,89 @@ export default function SentimentList() {
                 alignItems: "center",
                 textDecoration: "none",
                 color: "inherit",
-                width: "100%", // Ensure the entire area is clickable
+                width: "100%",
               }}
             >
               <img
-                src={loc.image_url} // Image of the apartment
+                src={loc.image_url}
                 alt={loc.location}
                 style={{
-                  width: "20%", // Set image width to 20% of the available space
+                  width: "20%",
                   height: "auto",
                   objectFit: "cover",
                   marginRight: "20px",
                   borderRadius: "6px",
-                  cursor: "pointer", // Cursor changes to pointer on hover to indicate it's clickable
+                  cursor: "pointer",
                 }}
               />
-              <div style={{ flex: 1, textAlign: "center" }}>
-                <strong style={{cursor: "pointer" }}>{loc.location}</strong>
-                <p>
-                  Overall: {loc.overall_sentiment}, Maintenance: {loc.maintenance_sentiment}, Distance: {loc.distance_sentiment}, Environment: {loc.environment_sentiment}
+              <div style={{ flex: 2, textAlign: "left" }}>
+                {/* Name of the complex (bigger font size) */}
+                <strong style={{ cursor: "pointer", fontSize: "24px" }}>
+                  {loc.location}
+                </strong>
+                
+                {/* Sentiment numbers (bigger font size) */}
+                <p style={{ fontSize: "20px", lineHeight: "1.6" }}>
+                  Overall: <strong>{loc.overall_sentiment}</strong>, 
+                  Maintenance: <strong>{loc.maintenance_sentiment}</strong>, 
+                  Distance: <strong>{loc.distance_sentiment}</strong>, 
+                  Environment: <strong>{loc.environment_sentiment}</strong>
                 </p>
+
+                {/* Render categories and bars horizontally */}
+                <div style={{ display: "flex", flexDirection: "column", marginLeft: "20px" }}>
+                  {/* Overall Sentiment Bar */}
+                  <div style={{ display: "flex", marginBottom: "10px" }}>
+                    <span style={{ width: "120px", textAlign: "right", paddingRight: "10px" }}>Overall</span>
+                    <div
+                      style={{
+                        width: sentimentToWidth(loc.overall_sentiment),
+                        height: "20px",
+                        backgroundColor: loc.overall_sentiment > 5 ? "#4CAF50" : "#f44336",
+                        borderRadius: "4px",
+                      }}
+                    ></div>
+                  </div>
+
+                  {/* Maintenance Sentiment Bar */}
+                  <div style={{ display: "flex", marginBottom: "10px" }}>
+                    <span style={{ width: "120px", textAlign: "right", paddingRight: "10px" }}>Maintenance</span>
+                    <div
+                      style={{
+                        width: sentimentToWidth(loc.maintenance_sentiment),
+                        height: "20px",
+                        backgroundColor: loc.maintenance_sentiment > 5 ? "#4CAF50" : "#f44336",
+                        borderRadius: "4px",
+                      }}
+                    ></div>
+                  </div>
+
+                  {/* Distance Sentiment Bar */}
+                  <div style={{ display: "flex", marginBottom: "10px" }}>
+                    <span style={{ width: "120px", textAlign: "right", paddingRight: "10px" }}>Distance</span>
+                    <div
+                      style={{
+                        width: sentimentToWidth(loc.distance_sentiment),
+                        height: "20px",
+                        backgroundColor: loc.distance_sentiment > 5 ? "#4CAF50" : "#f44336",
+                        borderRadius: "4px",
+                      }}
+                    ></div>
+                  </div>
+
+                  {/* Environment Sentiment Bar */}
+                  <div style={{ display: "flex", marginBottom: "10px" }}>
+                    <span style={{ width: "120px", textAlign: "right", paddingRight: "10px" }}>Environment</span>
+                    <div
+                      style={{
+                        width: sentimentToWidth(loc.environment_sentiment),
+                        height: "20px",
+                        backgroundColor: loc.environment_sentiment > 5 ? "#4CAF50" : "#f44336",
+                        borderRadius: "4px",
+                      }}
+                    ></div>
+                  </div>
+                </div>
               </div>
             </a>
           </li>

@@ -1,0 +1,25 @@
+/* OptionBar.css */
+nav {
+  display: flex;
+  justify-content: space-between; /* Distributes the buttons evenly */
+  align-items: center; /* Center the items vertically */
+  width: 100%; /* Make sure the nav takes up full width */
+  background-color: #333; /* You can change this to match your theme */
+  padding: 10px 0;
+}
+
+nav button {
+  flex: 1; /* Make buttons take up equal space */
+  background-color: #61dafb; /* Button background color */
+  border: none;
+  padding: 10px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center; /* Center text inside the buttons */
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+nav button:hover {
+  background-color: #21a1f1; /* Darker blue on hover */
+}

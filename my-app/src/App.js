@@ -1,6 +1,7 @@
 import OptionBar from "./Components/NavBar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SentimentList from "./Components/Sentiment";
+import './App.css';
 
 function Home() {
   return (

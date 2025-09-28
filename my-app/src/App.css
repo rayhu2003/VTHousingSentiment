@@ -1,38 +1,53 @@
-.App {
-  text-align: center;
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* For the NavBar */
+nav {
+  background-color: #333;
+  padding: 10px 20px;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+nav button {
+  background: none;
+  border: none;
   color: white;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
 }
 
-.App-link {
-  color: #61dafb;
+nav button:hover {
+  background-color: #555;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h2, p {
+  color: #444;
+}
+
+/* Set a light gray background for the entire page */
+body {
+  background-color: #f0f0f0; /* Light gray */
+  font-family: Arial, sans-serif; /* You can customize the font family if needed */
+  margin: 0;
+  padding: 0;
+  color: #333; /* Dark text for contrast */
+}
+
+h2, p {
+  margin: 0;
+  padding: 0;
 }
