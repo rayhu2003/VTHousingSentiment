@@ -57,7 +57,7 @@ def sort_locations():
             "error": f"Invalid sort key. Use one of {list(valid_sort_keys.keys())}"
         }), 400
     
-    sorted_data = sorted(data, key=lambda x: x.get(sort_field, 0), reverse=True)  
+    sorted_data = sorted(data, key=lambda x: x.get(sort_field, 0), reverse=True) 
     
     return jsonify(sorted_data)
 

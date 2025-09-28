@@ -27,7 +27,7 @@ export default function SentimentList() {
 
   return (
     <div>
-      <h2>Locations Sorted by Sentiments</h2>
+      <h2 style={{ textAlign: "center", marginBottom: "20px" }}>Locations Sorted by Sentiments</h2>
 
       <label>
         Sort by:{" "}
@@ -50,7 +50,7 @@ export default function SentimentList() {
               display: "flex",
               alignItems: "center",
               marginBottom: "20px",
-              border: "1px solid #ccc",
+              border: "1px solid #000000ff",
               padding: "10px",
               borderRadius: "8px",
             }}
@@ -58,7 +58,7 @@ export default function SentimentList() {
             <img
               src={loc.image_url}
               alt={loc.location}
-              style={{ width: "300px", height: "200px", objectFit: "cover", marginRight: "20px", borderRadius: "6px" }}
+              style={{ width: "20%", height: "auto", objectFit: "cover", marginRight: "20px", borderRadius: "6px" }}
             />
             <div>
               <strong>{loc.location}</strong>
