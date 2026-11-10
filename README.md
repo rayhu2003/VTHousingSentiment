@@ -71,14 +71,15 @@ REDDIT_CLIENT_SECRET=
 GEMINI_API_KEY=         # from Google AI Studio
 ```
 
-Run the pipeline:
+Run the pipeline — either both steps and the copy in one go:
+```bash
+./run_pipeline.bat   # Windows: double-click it, or run from a terminal
+```
+
+or manually:
 ```bash
 python DataScraper.py       # scrape Reddit into MongoDB
 python SentimentFromDB.py   # score the scraped text, write apartment_sentiments.json
-```
-
-Copy the result into the API:
-```bash
 cp apartment_sentiments.json my-app/backend/sentiments.json
 ```
 
