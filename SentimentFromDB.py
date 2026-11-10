@@ -38,34 +38,37 @@ def analyze_sentiment_gemini_json(text):
       "environment_sentiment": 3
     }}
     """
+    required_keys = ("maintenance_sentiment", "distance_sentiment", "environment_sentiment")
     try:
         response = gemini_client.models.generate_content(model="gemini-2.5-flash", contents=prompt)
         # The response text should be JSON, so parse it
         response_text = response.candidates[0].content.parts[0].text.strip()
         clean_text = re.sub(r'^```json\s*|```$', '', response_text.strip(), flags=re.MULTILINE)
         sentiment_json = json.loads(clean_text)
+        if not all(isinstance(sentiment_json.get(k), (int, float)) for k in required_keys):
+            print(f"Incomplete sentiment JSON: {sentiment_json}")
+            return None
         return sentiment_json
     except Exception as e:
         print(f"Error or invalid JSON response: {e}")
-        # Return neutral fallback
-        return {
-            "maintenance_sentiment": 5,
-            "distance_sentiment": 5,
-            "environment_sentiment": 5
-        }
-    
-# get setiment from a posts about a keyword
+        return None
+
+# get sentiment for a keyword, or None if there's no text or analysis fails
 def get_sentiment_for_keyword(keyword):
     query = {"keyword": keyword}
-    posts = collection.find(query)
+    posts = list(collection.find(query))
 
-    # combine texts from all posts/comments about the keyword
-    combined_text = ""
-    for post in posts:
-        combined_text += post.get("text", "") + "\n"
+    combined_text = "\n".join(post.get("text", "") for post in posts).strip()
+    if not combined_text:
+        print(f"No scraped text for '{keyword}', skipping.")
+        return None
 
-    # Analyze sentiment for the combined text
-    return analyze_sentiment_gemini_json(combined_text)
+    sentiment = analyze_sentiment_gemini_json(combined_text)
+    if sentiment is None:
+        return None
+
+    sentiment["source_count"] = len(posts)
+    return sentiment
 
 # list of apartment complexes to analyze
 apartment_complexes = ["Terrace View", "Smiths Landing", "The Edge", "Collegiate Suites", "Fox Ridge", "The Mill", "Sundance Ridge", "Maple Ridge", "Hunters Ridge", "Pheasant Run", "The Hub"]
@@ -73,10 +76,14 @@ apartment_complexes = ["Terrace View", "Smiths Landing", "The Edge", "Collegiate
 # analyze and save results
 def run_sentiments_and_save():
     results = {}
+    skipped = []
 
     for complex_name in apartment_complexes:
         print(f"Analyzing sentiment for: {complex_name}")
         sentiment = get_sentiment_for_keyword(complex_name)
+        if sentiment is None:
+            skipped.append(complex_name)
+            continue
         results[complex_name] = sentiment
 
     # Save to JSON file
@@ -84,6 +91,8 @@ def run_sentiments_and_save():
         json.dump(results, f, indent=2)
 
     print("Sentiment analysis completed and saved to apartment_sentiments.json")
+    if skipped:
+        print(f"Skipped (no data or analysis failure): {', '.join(skipped)}")
 
 
 if __name__ == "__main__":
