@@ -8,6 +8,20 @@ Live site: https://rayhu2003.github.io/VTHousingSentiment
 
 For each of 11 apartment complexes near Virginia Tech, the project scores Reddit posts and comments on three categories — **maintenance**, **distance**, and **environment** — on a 1-10 scale (5 = neutral) using Google's Gemini model. The web app lists every complex with its scores and lets you sort by category.
 
+## Run it locally (quickest way to see it working)
+
+The web app doesn't need any API keys to run — `my-app/backend/app.py` just reads the `sentiments.json` already checked into the repo. No Reddit/MongoDB/Gemini credentials, no internet dependency on Render or GitHub Pages.
+
+```bash
+./run_local.bat        # Windows: double-click it, or run from a terminal
+```
+
+This starts the Flask backend in its own window, then starts the React dev server pointed at it (`REACT_APP_API_URL=http://localhost:5000`), which opens `http://localhost:3000` in your browser automatically.
+
+Prerequisites: Python with `flask` and `flask-cors` installed (`pip install -r my-app/backend/requirements.txt`), and `npm install` already run once in `my-app/`.
+
+To stop it, close both opened terminal windows (or Ctrl+C in each).
+
 ## Architecture
 
 There are two halves: an offline data pipeline that runs by hand, and a web app that only ever reads the pipeline's output.
