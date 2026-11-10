@@ -1,18 +1,21 @@
+import os
 from google import genai
 from pymongo import MongoClient
 import pymongo
 from pymongo.server_api import ServerApi
 import json
 import re
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # MongoDB setup
-uri = "mongodb+srv://user1:1@cluster0.mtu1bhc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-client = pymongo.MongoClient(uri, server_api=ServerApi('1'))
-db = client["VTHousing"]
+mongo_client = pymongo.MongoClient(os.environ["MONGODB_URI"], server_api=ServerApi('1'))
+db = mongo_client["VTHousing"]
 collection = db["collection"]
 
 # Google GenAI setup
-client = genai.Client(api_key="AIzaSyDOMYtROTuFF7KoIRNRU0G3Rk6fbEipBjk")
+gemini_client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
 # getsentiment from text using Gemini, return JSON
 
@@ -36,7 +39,7 @@ def analyze_sentiment_gemini_json(text):
     }}
     """
     try:
-        response = client.models.generate_content(model="gemini-2.5-flash", contents=prompt)
+        response = gemini_client.models.generate_content(model="gemini-2.5-flash", contents=prompt)
         # The response text should be JSON, so parse it
         response_text = response.candidates[0].content.parts[0].text.strip()
         clean_text = re.sub(r'^```json\s*|```$', '', response_text.strip(), flags=re.MULTILINE)

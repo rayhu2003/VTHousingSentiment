@@ -1,18 +1,21 @@
+import os
 import praw
 import pymongo
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # --- MongoDB setup ---
-uri = "mongodb+srv://user1:1@cluster0.mtu1bhc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-client = pymongo.MongoClient(uri, server_api=ServerApi('1'))
-db = client["VTHousing"]
+mongo_client = pymongo.MongoClient(os.environ["MONGODB_URI"], server_api=ServerApi('1'))
+db = mongo_client["VTHousing"]
 collection = db["RedditReviews"]
 
 # --- Reddit API setup ---
 reddit = praw.Reddit(
-    client_id="h73r7mq7xBIRsOvaK2BSUw",
-    client_secret="y5NeC8ALHecpPhnqvSSQMXwZEdt5GQ",
+    client_id=os.environ["REDDIT_CLIENT_ID"],
+    client_secret=os.environ["REDDIT_CLIENT_SECRET"],
     user_agent="VTHousingScraper"
 )
 
