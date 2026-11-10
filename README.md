@@ -2,8 +2,6 @@
 
 Sentiment analysis of off-campus apartment complexes near Virginia Tech, built from Reddit discussion in r/VirginiaTech and r/Blacksburg.
 
-Live site: https://rayhu2003.github.io/VTHousingSentiment
-
 ## What it does
 
 For each of 11 apartment complexes near Virginia Tech, the project scores Reddit posts and comments on three categories — **maintenance**, **distance**, and **environment** — on a 1-10 scale (5 = neutral) using Google's Gemini model. The web app lists every complex with its scores and lets you sort by category.
