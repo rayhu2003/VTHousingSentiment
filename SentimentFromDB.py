@@ -12,7 +12,7 @@ load_dotenv()
 # MongoDB setup
 mongo_client = pymongo.MongoClient(os.environ["MONGODB_URI"], server_api=ServerApi('1'))
 db = mongo_client["VTHousing"]
-collection = db["collection"]
+collection = db["RedditReviews"]
 
 # Google GenAI setup
 gemini_client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
