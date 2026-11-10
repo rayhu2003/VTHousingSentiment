@@ -7,12 +7,12 @@ import json
 import re
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(override=True)
 
 # MongoDB setup
 mongo_client = pymongo.MongoClient(os.environ["MONGODB_URI"], server_api=ServerApi('1'))
 db = mongo_client["VTHousing"]
-collection = db["RedditReviews"]
+collection = db["collection"]
 
 # Google GenAI setup
 gemini_client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
@@ -40,7 +40,7 @@ def analyze_sentiment_gemini_json(text):
     """
     required_keys = ("maintenance_sentiment", "distance_sentiment", "environment_sentiment")
     try:
-        response = gemini_client.models.generate_content(model="gemini-2.5-flash", contents=prompt)
+        response = gemini_client.models.generate_content(model="gemini-3.6-flash", contents=prompt)
         # The response text should be JSON, so parse it
         response_text = response.candidates[0].content.parts[0].text.strip()
         clean_text = re.sub(r'^```json\s*|```$', '', response_text.strip(), flags=re.MULTILINE)

@@ -5,12 +5,12 @@ from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(override=True)
 
 # --- MongoDB setup ---
 mongo_client = pymongo.MongoClient(os.environ["MONGODB_URI"], server_api=ServerApi('1'))
 db = mongo_client["VTHousing"]
-collection = db["RedditReviews"]
+collection = db["collection"]
 
 # --- Reddit API setup ---
 reddit = praw.Reddit(

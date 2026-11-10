@@ -1,57 +1,50 @@
 {
-  "Terrace View": {
-    "maintenance_sentiment": 3,
-    "distance_sentiment": 9,
-    "environment_sentiment": 4
-  },
   "Smiths Landing": {
     "maintenance_sentiment": 9,
-    "distance_sentiment": 7,
-    "environment_sentiment": 3
+    "distance_sentiment": 6,
+    "environment_sentiment": 7,
+    "source_count": 32
   },
   "The Edge": {
     "maintenance_sentiment": 5,
     "distance_sentiment": 9,
-    "environment_sentiment": 3
+    "environment_sentiment": 7,
+    "source_count": 62
   },
   "Collegiate Suites": {
-    "maintenance_sentiment": 2,
+    "maintenance_sentiment": 3,
     "distance_sentiment": 5,
-    "environment_sentiment": 1
+    "environment_sentiment": 2,
+    "source_count": 46
   },
   "Fox Ridge": {
-    "maintenance_sentiment": 1,
+    "maintenance_sentiment": 2,
     "distance_sentiment": 7,
-    "environment_sentiment": 3
-  },
-  "The Mill": {
-    "maintenance_sentiment": 9,
-    "distance_sentiment": 8,
-    "environment_sentiment": 4
-  },
-  "Sundance Ridge": {
-    "maintenance_sentiment": 9,
-    "distance_sentiment": 8,
-    "environment_sentiment": 6
+    "environment_sentiment": 4,
+    "source_count": 48
   },
   "Maple Ridge": {
-    "maintenance_sentiment": 3,
+    "maintenance_sentiment": 2,
     "distance_sentiment": 4,
-    "environment_sentiment": 2
+    "environment_sentiment": 6,
+    "source_count": 40
   },
   "Hunters Ridge": {
-    "maintenance_sentiment": 3,
+    "maintenance_sentiment": 4,
     "distance_sentiment": 9,
-    "environment_sentiment": 3
-  },
-  "Pheasant Run": {
-    "maintenance_sentiment": 5,
-    "distance_sentiment": 7,
-    "environment_sentiment": 4
+    "environment_sentiment": 4,
+    "source_count": 35
   },
   "The Hub": {
     "maintenance_sentiment": 1,
-    "distance_sentiment": 6,
-    "environment_sentiment": 1
+    "distance_sentiment": 4,
+    "environment_sentiment": 2,
+    "source_count": 57
+  },
+  "Sundance Ridge": {
+    "maintenance_sentiment": 8,
+    "distance_sentiment": 8,
+    "environment_sentiment": 5,
+    "source_count": 20
   }
 }
